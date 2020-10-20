@@ -1,0 +1,27 @@
+import { Phase } from './types';
+
+export const PHASE_CASUALTY_MODIFIER: Record<Phase, number> = {
+  skirmish: 0.1,
+  melee: 0.2,
+  pursue: 0.3,
+  retreat: 0.3,
+  boarding: 0.2,
+  shelling: 0.1,
+  chase: 0.03,
+  withdrawal: 0.03,
+  blockade: 0,
+  sheltering: 0,
+  sortie: 0.1,
+  bombardment: 0.05,
+  storming: 0.2,
+  defense: 0.2,
+  looting: 0.5,
+  surrendering: 0.5,
+  surprise: 0.3,
+  shock: 0.3,
+  landing: 0.3,
+  flee: 0,
+  waiting: 0,
+  maneuvering: 0.1,
+  dogfight: 0.2,
+};
