@@ -7,7 +7,9 @@
 // See also https://github.com/Azgaar/Fantasy-Map-Generator/issues/153
 
 import d3 from 'd3';
-import { Grid, MapCoordinates, Customization } from './types';
+import { makeGridFixture } from './fixtures/grid/grid';
+import { makeMainOptionsFixture } from './fixtures/mainOptions/mainOptions';
+import { makePackFixture } from './fixtures/pack/pack';
 
 const version = '1.4'; // generator version
 document.title += ' v' + version;
@@ -127,17 +129,24 @@ legend
   .on('click', () => clearLegend());
 
 // main data variables
-let grid: Grid = {}; // initial graph based on jittered square grid and data
-let pack = {}; // packed graph and data
-let seed,
-  mapId,
-  mapHistory = [],
-  elSelected,
-  modules = {},
-  notes = [];
-let customization: Customization = 'no';
+grid = makeGridFixture(); // initial graph based on jittered square grid and data
+pack = makePackFixture(); // packed graph and data
+seed = '';
+mapId = undefined;
+mapHistory = [];
+elSelected = undefined;
+notes = [];
+customization = 0;
 
-let biomesData = applyDefaultBiomesSystem();
+// default options
+options = makeMainOptionsFixture({ pinNotes: false }); // main options object
+mapCoordinates = {}; // map coordinates on globe
+options.winds = [225, 45, 225, 315, 135, 315]; // default wind directions
+
+// TODO get rid of this
+let modules: any = {};
+
+biomesData = applyDefaultBiomesSystem();
 let nameBases = Names.getNameBases(); // cultures-related data
 const fonts = [
   'Almendra+SC',
@@ -157,11 +166,6 @@ let scale = 1,
   viewX = 0,
   viewY = 0;
 const zoom = d3.zoom().scaleExtent([1, 20]).on('zoom', zoomed);
-
-// default options
-let options = { pinNotes: false }; // options object
-let mapCoordinates: MapCoordinates = {}; // map coordinates on globe
-options.winds = [225, 45, 225, 315, 135, 315]; // default wind directions
 
 applyStoredOptions();
 let graphWidth = +mapWidthInput.value,

@@ -1,1 +1,10 @@
+# directories
 node_modules
+.cache
+dist
+
+# files
+# i use data.json for formatting the mass data that
+# comes in from the app as a json file so that i can
+# figure out types more easily.
+data.json
