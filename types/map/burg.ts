@@ -15,4 +15,7 @@ export interface Burg {
   walls: number;
   shanty: number;
   temple: number;
+  removed: boolean;
+  MFCG?: number;
+  MFCGlink?: string;
 }

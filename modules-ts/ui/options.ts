@@ -1,6 +1,5 @@
 import { ThreeD } from './3d/3d';
 // UI module to control the options (preferences)
-('use strict');
 
 $('#optionsContainer').draggable({
   handle: '.drag-trigger',
@@ -198,7 +197,7 @@ function changeMapSize() {
 }
 
 // just apply canvas size that was already set
-function applyMapSize() {
+export function applyMapSize() {
   const zoomMin = +zoomExtentMin.value,
     zoomMax = +zoomExtentMax.value;
   graphWidth = +mapWidthInput.value;
@@ -380,7 +379,7 @@ function changeZoomExtent(value) {
 }
 
 // control stored options logic
-function applyStoredOptions() {
+export function applyStoredOptions() {
   if (!localStorage.getItem('mapWidth') || !localStorage.getItem('mapHeight')) {
     mapWidthInput.value = window.innerWidth;
     mapHeightInput.value = window.innerHeight;
@@ -436,7 +435,7 @@ function applyStoredOptions() {
 }
 
 // randomize options if randomization is allowed (not locked or options='default')
-function randomizeOptions() {
+export function randomizeOptions() {
   Math.seedrandom(seed); // reset seed to initial one
   const randomize =
     new URL(window.location.href).searchParams.get('options') === 'default'; // ignore stored options

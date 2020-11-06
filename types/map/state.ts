@@ -1,3 +1,4 @@
+import { TwoNumberArray } from '../globals';
 import { Campaign, Military } from '../military';
 
 export type StateName = 'Neutrals' | string;
@@ -39,7 +40,7 @@ export interface FullState extends BaseState {
   formName: StateFormName;
   fullName: string;
   provinces: number[];
-  pole: [number, number];
+  pole: TwoNumberArray;
   alert: number;
   military: Military[];
 }

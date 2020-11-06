@@ -1,9 +1,12 @@
-(function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    (global.Religions = factory());
-}(this, (function () {'use strict';
+declare var Religions: () => {
+  generate: any;
+  add: any;
+  getDeityName: any;
+  expandReligions: any;
+  updateCultures: any;
+};
 
+Religions = () => {
   // name generation approach and relative chance to be selected
   const approach = {"Number":1, "Being":3, "Adjective":5, "Color + Animal":5,
     "Adjective + Animal":5, "Adjective + Being":5, "Adjective + Genitive":1,
@@ -363,4 +366,5 @@
 
   return {generate, add, getDeityName, expandReligions, updateCultures};
 
-})));
+
+}

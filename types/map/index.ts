@@ -2,6 +2,7 @@ export * from './biome';
 export * from './burg';
 export * from './feature';
 export * from './map';
+export * from './mine';
 export * from './note';
 export * from './province';
 export * from './river';

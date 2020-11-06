@@ -1,7 +1,7 @@
 import d3 from 'd3';
-
 import { Grid, Pack } from './types/globals';
 import { MainOptions } from './types/globals';
+import { NameBase } from './types/ui-modules';
 import {
   Biome,
   Customization,
@@ -26,4 +26,7 @@ declare global {
   var mapCoordinates: MapCoordinates;
   var mapWidthInput: { value: number };
   var mapHeightInput: { value: number };
+  var ldb: { get: any; set: any };
+  var nameBases: NameBase[];
+  var fonts: string[];
 }

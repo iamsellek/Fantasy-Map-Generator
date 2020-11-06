@@ -1,5 +1,6 @@
-import { Vertex } from '../graph';
 import { Feature } from '../map';
+import { VoronoiCells, VoronoiVertices } from '../voronoi';
+import { ThreeNumberArray } from './';
 
 export interface Grid {
   spacing: number;
@@ -8,14 +9,25 @@ export interface Grid {
   cellsX: number;
   cellsY: number;
   cells: GridCell;
-  vertices: Vertex[];
+  vertices: VoronoiVertices;
   features: [0, ...Feature[]];
 }
 
-// TODO figure out what D3 magic this needs to extend
-export interface GridCell {
-  temp: Int8Array[];
-  prec: Uint8Array[];
+export interface GridCell extends VoronoiCells {
+  temps: Int8Array;
+  precipitation: Uint8Array | number[][];
+  i: Uint16Array | Uint32Array;
+  heights: Uint8Array;
+  features: Uint16Array;
+  types: Int8Array;
+  borders: number[];
+  gridCellInitial: Uint16Array | Uint32Array;
+  rivers: Uint16Array;
+  biomes: Uint8Array;
+  quadtree: d3.Quadtree<ThreeNumberArray>;
+  area: Uint16Array;
 }
 
 export type ZeroOrOne = 0 | 1;
+
+export type OneOrNegativeOne = 1 | -1;

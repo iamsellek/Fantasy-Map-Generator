@@ -47,3 +47,17 @@ export interface MapCoordinates {
   lonT?: number;
   lonW?: number;
 }
+
+export type Template =
+  | 'Pangea'
+  | 'Shattered'
+  | 'Continents'
+  | 'Archipelago'
+  | 'High Island'
+  | 'Low Island'
+  | 'Pangea'
+  | 'Volcano'
+  | 'Mediterranean'
+  | 'Peninsula'
+  | 'Isthmus'
+  | 'Atoll';

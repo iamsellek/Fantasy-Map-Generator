@@ -1,53 +1,28 @@
-export interface BaseFeature {
+export interface Feature {
   border: boolean;
-  cells: number;
-  firstCell: number;
+  cells?: number;
+  firstCell?: number;
   group?: GroupType;
   i?: number;
   land: boolean;
-  type?: FeatureType;
+  type: FeatureType;
+  area?: number;
+  vertices?: number[];
 }
 
-export interface IslandFeature extends BaseFeature {
-  area: number;
-  group: IslandGroupType;
-  type: 'island';
-  vertices: number;
-}
+export type FeatureType = 'island' | 'ocean' | 'lake';
 
-export interface OceanFeature extends BaseFeature {
-  group: OceanGroupType;
-  type: 'ocean';
-}
-
-export interface LakeFeature extends BaseFeature {
-  area: number;
-  group: LakeGroupType;
-  type: 'lake';
-  vertices: number[];
-}
-
-export type FeatureWithType<T extends FeatureType> = T extends 'island'
-  ? IslandFeature
-  : T extends 'ocean'
-  ? OceanFeature
-  : T extends 'lake'
-  ? LakeFeature
-  : undefined;
-export type Feature = IslandFeature | OceanFeature | LakeFeature;
-
-export type IslandFeatureType = 'island';
-export type WaterFeatureType = 'ocean' | 'lake';
-export type FeatureType = IslandFeatureType | WaterFeatureType;
-
-export type IslandGroupType = 'continent' | 'isle' | 'lake_island' | 'island';
-export type LakeGroupType =
+export type GroupType =
+  | 'continent'
+  | 'isle'
+  | 'lake_island'
+  | 'island'
   | 'dry'
   | 'salt'
   | 'frozen'
   | 'sinkhole'
   | 'lava'
-  | 'freshwater';
-export type OceanGroupType = 'ocean' | 'sea' | 'gulf';
-export type WaterGroupType = OceanGroupType | LakeGroupType;
-export type GroupType = IslandGroupType | WaterGroupType;
+  | 'freshwater'
+  | 'ocean'
+  | 'sea'
+  | 'gulf';

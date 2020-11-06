@@ -1,0 +1,47 @@
+export const DISEASE_ADJECTIVES = [
+  'Great',
+  'Silent',
+  'Severe',
+  'Blind',
+  'Unknown',
+  'Loud',
+  'Deadly',
+  'Burning',
+  'Bloody',
+  'Brutal',
+  'Fatal',
+];
+
+export const DISEASE_ANIMALS = [
+  'Ape',
+  'Bear',
+  'Boar',
+  'Cat',
+  'Cow',
+  'Dog',
+  'Pig',
+  'Fox',
+  'Bird',
+  'Horse',
+  'Rat',
+  'Raven',
+  'Sheep',
+  'Spider',
+  'Wolf',
+];
+
+export const DISEASE_COLORS = [
+  'Golden',
+  'White',
+  'Black',
+  'Red',
+  'Pink',
+  'Purple',
+  'Blue',
+  'Green',
+  'Yellow',
+  'Amber',
+  'Orange',
+  'Brown',
+  'Grey',
+];

@@ -787,12 +787,18 @@ function fog(id, path) {
 }
 
 // remove fogging
-function unfog(id) {
+function unfog(id?: string) {
   let el = defs.select('#fog #' + id);
-  if (!id || !el.size()) el = defs.select('#fog').selectAll('path');
+
+  if (!id || !el.size()) {
+    el = defs.select('#fog').selectAll('path');
+  }
 
   el.remove();
-  if (!defs.selectAll('#fog path').size()) fogging.style('display', 'none');
+
+  if (!defs.selectAll('#fog path').size()) {
+    fogging.style('display', 'none');
+  }
 }
 
 function getFileName(dataType?) {

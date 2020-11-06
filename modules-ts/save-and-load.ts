@@ -691,12 +691,15 @@ function toggleSaveReminder() {
   }
 }
 
-function uploadMap(file, callback) {
+function uploadMap(file: Blob, callback?: () => void) {
   uploadMap.timeStart = performance.now();
 
   const fileReader = new FileReader();
   fileReader.onload = function (fileLoadedEvent) {
-    if (callback) callback();
+    if (callback) {
+      callback();
+    }
+
     const dataLoaded = fileLoadedEvent.target.result;
     const data = dataLoaded.split('\r\n');
 
