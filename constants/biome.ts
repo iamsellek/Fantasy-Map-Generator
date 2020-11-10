@@ -1,6 +1,4 @@
-import { BiomeColor, BiomeIconArray, BiomeName } from '../types/map';
-
-export const BIOME_NAME: BiomeName[] = [
+const BIOME_NAME: BiomeName[] = [
   'Marine',
   'Hot desert',
   'Cold desert',
@@ -15,7 +13,7 @@ export const BIOME_NAME: BiomeName[] = [
   'Glacier',
   'Wetland',
 ];
-export const BIOME_COLOR: BiomeColor[] = [
+const BIOME_COLOR: BiomeColor[] = [
   '#466eab',
   '#fbe79f',
   '#b5b887',
@@ -30,22 +28,8 @@ export const BIOME_COLOR: BiomeColor[] = [
   '#d5e7eb',
   '#0b9131',
 ];
-export const BIOME_HABITABILITY = [
-  0,
-  4,
-  10,
-  22,
-  30,
-  50,
-  100,
-  80,
-  90,
-  12,
-  4,
-  0,
-  12,
-];
-export const BIOME_ICONS_DENSITY = [
+const BIOME_HABITABILITY = [0, 4, 10, 22, 30, 50, 100, 80, 90, 12, 4, 0, 12];
+const BIOME_ICONS_DENSITY = [
   0,
   3,
   2,
@@ -60,7 +44,7 @@ export const BIOME_ICONS_DENSITY = [
   0,
   150,
 ];
-export const BIOME_ICONS: BiomeIconArray = [
+const BIOME_ICONS: BiomeIconArray = [
   {},
   { dune: 3, cactus: 6, deadTree: 1 },
   { dune: 9, deadTree: 1 },
@@ -75,7 +59,7 @@ export const BIOME_ICONS: BiomeIconArray = [
   {},
   { swamp: 1 },
 ];
-export const BIOME_MOVE_COST = [
+const BIOME_MOVE_COST = [
   10,
   200,
   150,
@@ -90,7 +74,7 @@ export const BIOME_MOVE_COST = [
   5000,
   150,
 ];
-export const BIOMES_MATRIX = [
+const BIOMES_MATRIX = [
   // hot ↔ cold [>19°C; <-4°C]; dry ↕ wet
   new Uint8Array([
     1,

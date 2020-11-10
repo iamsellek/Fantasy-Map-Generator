@@ -1,4 +1,4 @@
-export interface NameBase {
+interface NameBase {
   name: Name;
   i: number;
   min: number;
@@ -8,7 +8,7 @@ export interface NameBase {
   b: string;
 }
 
-export type Name = 
+type Name = 
 'German'|
 'English'|
 'French'|

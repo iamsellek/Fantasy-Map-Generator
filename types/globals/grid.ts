@@ -1,8 +1,4 @@
-import { Feature } from '../map';
-import { VoronoiCells, VoronoiVertices } from '../voronoi';
-import { ThreeNumberArray } from './';
-
-export interface Grid {
+interface Grid {
   spacing: number;
   boundary: number[][];
   points: number[][];
@@ -13,7 +9,7 @@ export interface Grid {
   features: [0, ...Feature[]];
 }
 
-export interface GridCell extends VoronoiCells {
+interface GridCell extends VoronoiCells {
   temps: Int8Array;
   precipitation: Uint8Array | number[][];
   i: Uint16Array | Uint32Array;
@@ -28,6 +24,6 @@ export interface GridCell extends VoronoiCells {
   area: Uint16Array;
 }
 
-export type ZeroOrOne = 0 | 1;
+type ZeroOrOne = 0 | 1;
 
-export type OneOrNegativeOne = 1 | -1;
+type OneOrNegativeOne = 1 | -1;

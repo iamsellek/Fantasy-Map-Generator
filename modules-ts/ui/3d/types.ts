@@ -1,4 +1,4 @@
-export interface Options {
+interface Options {
   isOn: boolean;
   isGlobe: boolean;
   scale: number;
@@ -13,12 +13,12 @@ export interface Options {
   resolution: number;
 }
 
-export interface ThreeDPosition {
+interface ThreeDPosition {
   x: number;
   y: number;
   z: number;
 }
 
-export type ViewType = 'viewMesh' | 'viewGlobe';
+type ViewType = 'viewMesh' | 'viewGlobe';
 
-export type Canvas = HTMLCanvasElement | OffscreenCanvas;
+type Canvas = HTMLCanvasElement | OffscreenCanvas;

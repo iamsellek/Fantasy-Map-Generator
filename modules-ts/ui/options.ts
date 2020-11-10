@@ -1,4 +1,3 @@
-import { ThreeD } from './3d/3d';
 // UI module to control the options (preferences)
 
 $('#optionsContainer').draggable({
@@ -197,7 +196,7 @@ function changeMapSize() {
 }
 
 // just apply canvas size that was already set
-export function applyMapSize() {
+function applyMapSize() {
   const zoomMin = +zoomExtentMin.value,
     zoomMax = +zoomExtentMax.value;
   graphWidth = +mapWidthInput.value;
@@ -379,7 +378,7 @@ function changeZoomExtent(value) {
 }
 
 // control stored options logic
-export function applyStoredOptions() {
+function applyStoredOptions() {
   if (!localStorage.getItem('mapWidth') || !localStorage.getItem('mapHeight')) {
     mapWidthInput.value = window.innerWidth;
     mapHeightInput.value = window.innerHeight;
@@ -435,7 +434,7 @@ export function applyStoredOptions() {
 }
 
 // randomize options if randomization is allowed (not locked or options='default')
-export function randomizeOptions() {
+function randomizeOptions() {
   Math.seedrandom(seed); // reset seed to initial one
   const randomize =
     new URL(window.location.href).searchParams.get('options') === 'default'; // ignore stored options
@@ -625,7 +624,7 @@ function showSavePane() {
 
 // download map data as GeoJSON
 function saveGeoJSON() {
-  alertMessage.innerHTML = `You can export map data in GeoJSON format used in GIS tools such as QGIS.
+  alertMessage.innerHTML = `You can map data in GeoJSON format used in GIS tools such as QGIS.
   Check out ${link(
     'https://github.com/Azgaar/Fantasy-Map-Generator/wiki/GIS-data-export',
     'wiki-page'

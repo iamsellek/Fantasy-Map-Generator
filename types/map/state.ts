@@ -1,9 +1,6 @@
-import { TwoNumberArray } from '../globals';
-import { Campaign, Military } from '../military';
+type StateName = 'Neutrals' | string;
 
-export type StateName = 'Neutrals' | string;
-
-export interface BaseState {
+interface BaseState {
   i: number;
   name: StateName;
   urban: number;
@@ -16,12 +13,12 @@ export interface BaseState {
   provinces: number[];
 }
 
-export interface NeutralState extends BaseState {
+interface NeutralState extends BaseState {
   name: 'Neutrals';
   diplomacy: string[][];
 }
 
-export interface FullState extends BaseState {
+interface FullState extends BaseState {
   color: string;
   expansionism: number;
   capital: number;
@@ -45,12 +42,12 @@ export interface FullState extends BaseState {
   military: Military[];
 }
 
-export type State = BaseState | FullState;
-export type StateWithName<T extends StateName> = T extends 'Neutral'
+type State = BaseState | FullState;
+type StateWithName<T extends StateName> = T extends 'Neutral'
   ? BaseState
   : FullState;
 
-export type StateType =
+type StateType =
   | 'Generic'
   | 'River'
   | 'Lake'
@@ -59,7 +56,7 @@ export type StateType =
   | 'Hunting'
   | 'Highland';
 
-export type StateForm =
+type StateForm =
   | 'Monarchy'
   | 'Republic'
   | 'Theocracy'
@@ -69,7 +66,7 @@ export type StateForm =
 
 // TODO tighten these up (like Features) once it's clearer which StateForm
 // each one corresponds to.
-export type StateFormName =
+type StateFormName =
   // Monarchy?
   | 'Protectorate'
   | 'Sultanate'

@@ -1,9 +1,7 @@
-import { Burg } from './types/map';
-
-export const getStringAsNumberOrNull = (param: string | null): number | null =>
+const getStringAsNumberOrNull = (param: string | null): number | null =>
   Number.isNaN(Number(param)) ? null : Number(param);
 
-export const setElementDisplayValue = (
+const setElementDisplayValue = (
   el: HTMLElement | null,
   value: string
 ): void => {
@@ -12,7 +10,7 @@ export const setElementDisplayValue = (
   }
 };
 
-export const defineSelection = (
+const defineSelection = (
   coast: boolean,
   port: boolean,
   river: boolean

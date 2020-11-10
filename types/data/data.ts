@@ -1,11 +1,11 @@
-export interface Data {
+interface Data {
   name: string;
   type: DataType;
   cells: Array<number | undefined>;
   fill: string;
 }
 
-export type DataType =
+type DataType =
   | 'Invasion'
   | 'Rebels'
   | 'Proselytism'

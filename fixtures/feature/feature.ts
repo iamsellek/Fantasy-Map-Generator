@@ -1,9 +1,4 @@
-import { makeFixture } from 'make-fixture';
-import { BaseFeature } from '../../types/map';
-
-export const makeFeatureFixture = (
-  overrides?: Partial<BaseFeature>
-): BaseFeature => {
+const makeFeatureFixture = (overrides?: Partial<BaseFeature>): BaseFeature => {
   const defaults: BaseFeature = {
     border: false,
     cells: 0,

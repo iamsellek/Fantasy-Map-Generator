@@ -1,4 +1,4 @@
-export interface Campaign {
+interface Campaign {
   name: string;
   start: number;
   end: number;

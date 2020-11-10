@@ -1,8 +1,4 @@
-import Delaunator from 'delaunator';
-import { ThreeNumberArray, TwoNumberArray } from '../types/globals';
-import { Voronoi, VoronoiCells, VoronoiVertices } from '../types/voronoi';
-
-export function getVoronoi(
+function getVoronoi(
   delaunay: Delaunator<ArrayLike<number>>,
   allPoints: number[][],
   pointsLength: number

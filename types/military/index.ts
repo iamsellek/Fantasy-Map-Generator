@@ -1,2 +1,2 @@
-export * from './campaign';
-export * from './military';
+* from './campaign';
+* from './military';

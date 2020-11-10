@@ -1,7 +1,4 @@
-import { makeFixture } from 'make-fixture';
-import { MainOptions } from '../../types/globals';
-
-export const makeMainOptionsFixture = (
+const makeMainOptionsFixture = (
   overrides?: Partial<MainOptions>
 ): MainOptions => {
   const defaults: MainOptions = {

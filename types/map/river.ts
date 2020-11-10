@@ -1,4 +1,4 @@
-export interface River {
+interface River {
   i: number;
   parent: number;
   length: number;
@@ -9,4 +9,4 @@ export interface River {
   type: RiverType;
 }
 
-export type RiverType = 'River' | 'Fork' | 'Branch';
+type RiverType = 'River' | 'Fork' | 'Branch';

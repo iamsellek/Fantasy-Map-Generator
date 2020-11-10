@@ -1,4 +1,4 @@
-export interface Military {
+interface Military {
   i: number;
   a: number;
   cell: number;
@@ -13,9 +13,9 @@ export interface Military {
   icon: MilitaryIcon;
 }
 
-export type MilitaryIcon = '⚔️' | '🌊' | '🏹' | '👑';
+type MilitaryIcon = '⚔️' | '🌊' | '🏹' | '👑';
 
-export interface Unit {
+interface Unit {
   archers: number;
   cavalry: number;
   infantry: number;

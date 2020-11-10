@@ -1,7 +1,4 @@
-import { makeFixture } from 'make-fixture';
-import { Religion } from '../../types/peoples';
-
-export const makeReligionFixture = (overrides?: Religion): Religion => {
+const makeReligionFixture = (overrides?: Religion): Religion => {
   const defaults: Religion = {
     name: '',
     color: '',

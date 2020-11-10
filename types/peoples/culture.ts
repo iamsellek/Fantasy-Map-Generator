@@ -1,11 +1,11 @@
-export interface BaseCulture {
+interface BaseCulture {
   base: number;
   i: number;
   name: string;
   origin: number | null;
 }
 
-export interface Culture extends BaseCulture {
+interface Culture extends BaseCulture {
   center: number;
   color: string;
   type: CultureType;
@@ -13,7 +13,7 @@ export interface Culture extends BaseCulture {
   code: string;
 }
 
-export type CultureType =
+type CultureType =
   | 'Nomadic'
   | 'Highland'
   | 'Lake'

@@ -1,9 +1,4 @@
-import { Burg, Feature, Province, River, State } from '../map';
-import { Culture, NoReligion, Religion } from '../peoples';
-import { GridCell } from './grid';
-import { VoronoiVertices } from '../voronoi';
-
-export interface Pack {
+interface Pack {
   cells: PackCell;
   boundary: number[][];
   vertices: VoronoiVertices;

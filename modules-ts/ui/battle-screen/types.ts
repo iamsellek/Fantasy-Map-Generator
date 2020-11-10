@@ -1,4 +1,4 @@
-export interface Army {
+interface Army {
   regiments: [];
   distances: [];
   morale: number; // between 0-100, inclusive
@@ -10,7 +10,7 @@ export interface Army {
   y: number;
 }
 
-export type Phase =
+type Phase =
   | 'nothing'
   | 'skirmish'
   | 'melee'

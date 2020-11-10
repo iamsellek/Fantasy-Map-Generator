@@ -1,4 +1,4 @@
-export interface MapHistory {
+interface MapHistory {
   created: number;
   height: number;
   seed: string;
@@ -6,7 +6,7 @@ export interface MapHistory {
   width: number;
 }
 
-export type MapTemplate =
+type MapTemplate =
   | 'Continents'
   | 'Archipelago'
   | 'High Island'
@@ -24,7 +24,7 @@ export type MapTemplate =
   | 'Isthmus'
   | 'Atoll';
 
-export type Customization =
+type Customization =
   | 0 // no
   | 1 // heightmap draw
   | 2 // states draw
@@ -39,7 +39,7 @@ export type Customization =
   | 12 // add provinces
   | 13; // enter customization to avoid unwanted dialog closing
 
-export interface MapCoordinates {
+interface MapCoordinates {
   latN?: number;
   latS?: number;
   latT?: number;
@@ -48,7 +48,7 @@ export interface MapCoordinates {
   lonW?: number;
 }
 
-export type Template =
+type Template =
   | 'Pangea'
   | 'Shattered'
   | 'Continents'

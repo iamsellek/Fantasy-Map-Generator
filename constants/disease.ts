@@ -1,4 +1,4 @@
-export const DISEASE_ADJECTIVES = [
+const DISEASE_ADJECTIVES = [
   'Great',
   'Silent',
   'Severe',
@@ -12,7 +12,7 @@ export const DISEASE_ADJECTIVES = [
   'Fatal',
 ];
 
-export const DISEASE_ANIMALS = [
+const DISEASE_ANIMALS = [
   'Ape',
   'Bear',
   'Boar',
@@ -30,7 +30,7 @@ export const DISEASE_ANIMALS = [
   'Wolf',
 ];
 
-export const DISEASE_COLORS = [
+const DISEASE_COLORS = [
   'Golden',
   'White',
   'Black',

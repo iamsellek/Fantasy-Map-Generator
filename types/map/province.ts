@@ -1,4 +1,4 @@
-export interface Province {
+interface Province {
   i: number;
   state: number;
   center: number;
@@ -10,7 +10,7 @@ export interface Province {
 }
 
 // TODO figure out how to maybe tie these to state types?
-export type ProvinceFormName =
+type ProvinceFormName =
   // Monarchy
   | 'County'
   | 'Earldom'

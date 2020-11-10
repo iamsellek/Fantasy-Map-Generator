@@ -1,4 +1,4 @@
-export interface Queue {
+interface Queue {
   e: number;
   p: number;
 }

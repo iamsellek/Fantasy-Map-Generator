@@ -6,95 +6,6 @@
 // I don't mind of any help with programming.
 // See also https://github.com/Azgaar/Fantasy-Map-Generator/issues/153
 
-import d3 from 'd3';
-import Delaunator from 'delaunator';
-import PriorityQueue from 'js-priority-queue';
-import seedrandom from 'seedrandom';
-import {
-  BIOMES_MATRIX,
-  BIOME_COLOR,
-  BIOME_HABITABILITY,
-  BIOME_ICONS,
-  BIOME_ICONS_DENSITY,
-  BIOME_MOVE_COST,
-  BIOME_NAME,
-} from './constants/biome';
-import {
-  DISEASE_ADJECTIVES,
-  DISEASE_ANIMALS,
-  DISEASE_COLORS,
-} from './constants/disease';
-import { LATITUDE_MODIFIER } from './constants/map';
-import { ADJECTIVES, ANIMALS, COLORS } from './constants/tavern';
-import { makeGridFixture } from './fixtures/grid/grid';
-import { makeMainOptionsFixture } from './fixtures/mainOptions/mainOptions';
-import { makePackFixture } from './fixtures/pack/pack';
-import {
-  defineSelection,
-  getStringAsNumberOrNull,
-  setElementDisplayValue,
-} from './helpers';
-import {
-  applyMapSize,
-  applyStoredOptions,
-  randomizeOptions,
-} from './modules-ts/ui/options';
-import {
-  biased,
-  capitalize,
-  clipPoly,
-  convertTemperature,
-  debounce,
-  findCell,
-  gauss,
-  generateDate,
-  getAdjective,
-  getBoundaryPoints,
-  getJitteredGrid,
-  getNextId,
-  getPackPolygon,
-  isLand,
-  link,
-  normalize,
-  P,
-  parseError,
-  ra,
-  rand,
-  raU,
-  rn,
-  round,
-  rw,
-} from './modules-ts/utils';
-import { getVoronoi } from './modules-ts/voronoi';
-import { isElement } from './types/d3/typeGuards';
-import { Data } from './types/data';
-import {
-  Grid,
-  OneOrNegativeOne,
-  Pack,
-  ThreeNumberArray,
-  TwoNumberArray,
-} from './types/globals';
-import {
-  Biome,
-  BiomeIcon,
-  BiomeType,
-  Burg,
-  Feature,
-  FeatureType,
-  GroupType,
-  Resources,
-  Template,
-} from './types/map';
-import {
-  getFeatureType,
-  isBurg,
-  isFeature,
-  isFullState,
-} from './types/map/helpers';
-import { Religion } from './types/peoples/religion';
-import { Queue } from './types/queue';
-
 const version = '1.4'; // generator version
 document.title += ' v' + version;
 
@@ -216,23 +127,23 @@ legend
   .on('click', () => clearLegend());
 
 // main data variables
-grid = makeGridFixture(); // initial graph based on jittered square grid and data
-pack = makePackFixture(); // packed graph and data
-seed = '';
-mapId = undefined;
-mapHistory = [];
-elSelected = undefined;
-notes = [];
-customization = 0;
+let grid = makeGridFixture(); // initial graph based on jittered square grid and data
+let pack = makePackFixture(); // packed graph and data
+let seed = '';
+let mapId = undefined;
+let mapHistory: MapHistory[] = [];
+let elSelected = undefined;
+let notes: Note[] = [];
+let customization = 0;
 
 // default options
-options = makeMainOptionsFixture({ pinNotes: false }); // main options object
-mapCoordinates = {}; // map coordinates on globe
+let options = makeMainOptionsFixture({ pinNotes: false }); // main options object
+let mapCoordinates: MapCoordinates = {}; // map coordinates on globe
 options.winds = [225, 45, 225, 315, 135, 315]; // default wind directions
 
-biomesData = applyDefaultBiomesSystem();
-nameBases = Names().getNameBases(); // cultures-related data
-fonts = [
+let biomesData = applyDefaultBiomesSystem();
+let nameBases = Names().getNameBases(); // cultures-related data
+let fonts = [
   'Almendra+SC',
   'Georgia',
   'Arial',
@@ -252,6 +163,33 @@ let scale = 1,
 const zoom = d3.zoom().scaleExtent([1, 20]).on('zoom', zoomed);
 
 applyStoredOptions();
+
+// global jquery elements
+const alertMessage = $('#alertMessage').get(0);
+const hideLabels = $('#hideLabels').get(0) as HTMLInputElement;
+const overlay = $('#mapOverlay').get(0);
+const optionsSeed = $('#optionsSeed').get(0) as HTMLInputElement;
+const densityInput = $('#densityInput').get(0) as HTMLInputElement;
+const templateInput = $('#templatetInput').get(0) as HTMLSelectElement;
+const mapWidthInput = $('#mapWidthInput').get(0) as HTMLInputElement;
+const mapHeightInput = $('#mapHeightInput').get(0) as HTMLInputElement;
+const mapSizeOutput = $('#mapSizeOutput').get(0) as HTMLInputElement;
+const mapSizeInput = $('#mapSizeInput').get(0) as HTMLInputElement;
+const latitudeOutput = $('#latitudeOutput').get(0) as HTMLInputElement;
+const latitudeInput = $('#latitudeInput').get(0) as HTMLInputElement;
+const temperatureEquatorInput = $('#temperatureEquatorInput').get(
+  0
+) as HTMLInputElement;
+const temperaturePoleInput = $('#temperaturePoleInput').get(
+  0
+) as HTMLInputElement;
+const precipitationInput = $('#precipitationInput').get(0) as HTMLInputElement;
+const heightExponentInput = $('#heightExponentInput').get(
+  0
+) as HTMLInputElement;
+const populationRate = $('#populationRate').get(0) as HTMLInputElement;
+const urbanization = $('#urbanization').get(0) as HTMLInputElement;
+const culturesSet = $('#culturesSet').get(0) as HTMLSelectElement;
 
 let graphWidth = +mapWidthInput.value,
   graphHeight = +mapHeightInput.value; // voronoi graph extention, cannot be changed arter generation
@@ -277,31 +215,6 @@ oceanLayers
   .attr('y', 0)
   .attr('width', graphWidth)
   .attr('height', graphHeight);
-
-// global jquery elements
-const alertMessage = $('#alertMessage').get(0);
-const hideLabels = $('#hideLabels').get(0) as HTMLInputElement;
-const overlay = $('#mapOverlay').get(0);
-const optionsSeed = $('#optionsSeed').get(0) as HTMLInputElement;
-const densityInput = $('#densityInput').get(0) as HTMLInputElement;
-const templateInput = $('#templatetInput').get(0) as HTMLSelectElement;
-const mapSizeOutput = $('#mapSizeOutput').get(0) as HTMLInputElement;
-const mapSizeInput = $('#mapSizeInput').get(0) as HTMLInputElement;
-const latitudeOutput = $('#latitudeOutput').get(0) as HTMLInputElement;
-const latitudeInput = $('#latitudeInput').get(0) as HTMLInputElement;
-const temperatureEquatorInput = $('#temperatureEquatorInput').get(
-  0
-) as HTMLInputElement;
-const temperaturePoleInput = $('#temperaturePoleInput').get(
-  0
-) as HTMLInputElement;
-const precipitationInput = $('#precipitationInput').get(0) as HTMLInputElement;
-const heightExponentInput = $('#heightExponentInput').get(
-  0
-) as HTMLInputElement;
-const populationRate = $('#populationRate').get(0) as HTMLInputElement;
-const urbanization = $('#urbanization').get(0) as HTMLInputElement;
-const culturesSet = $('#culturesSet').get(0) as HTMLSelectElement;
 
 void (function removeLoading() {
   d3.select('#loading')
@@ -2847,8 +2760,8 @@ function addZones(number = 1) {
     const cellsArray: Array<number | undefined> = [];
     const cost: number[] = [];
     const power: number = rand(20, 37);
-    const queue = new PriorityQueue<Queue>({
-      comparator: (a, b) => a.p - b.p,
+    const queue = new PriorityQueue({
+      comparator: (a: any, b: any) => a.p - b.p,
     });
     queue.queue({ e: burg.cell, p: 0 });
 
@@ -2918,7 +2831,7 @@ function addZones(number = 1) {
     const cellsArray: number[] = [];
     const cost: number[] = [];
     const power: number = rand(5, 25);
-    const queue = new PriorityQueue<Queue>({ comparator: (a, b) => a.p - b.p });
+    const queue = new PriorityQueue({ comparator: (a, b) => a.p - b.p });
     queue.queue({ e: burg.cell, p: 0 });
 
     while (queue.length) {
@@ -3261,6 +3174,12 @@ function addZones(number = 1) {
         used[e] = 1;
         queue.push(e);
       });
+    }
+
+    if (!cell) {
+      console.error('Cell not defined.');
+
+      return;
     }
 
     const proper = getAdjective(Names().getCultureShort(cells.cultures[cell]));

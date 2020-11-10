@@ -1,2 +1,2 @@
-export * from './culture';
-export * from './religion';
+* from './culture';
+* from './religion';

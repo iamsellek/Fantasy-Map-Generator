@@ -1,4 +1,4 @@
-export const COLORS = [
+const COLORS = [
   'Dark',
   'Light',
   'Bright',
@@ -17,7 +17,7 @@ export const COLORS = [
   'Grey',
 ];
 
-export const ANIMALS = [
+const ANIMALS = [
   'Antelope',
   'Ape',
   'Badger',
@@ -74,7 +74,7 @@ export const ANIMALS = [
   'Ox',
 ];
 
-export const ADJECTIVES = [
+const ADJECTIVES = [
   'New',
   'Good',
   'High',

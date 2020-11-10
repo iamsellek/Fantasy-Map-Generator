@@ -1,1 +1,1 @@
-export * from './names';
+* from './names';

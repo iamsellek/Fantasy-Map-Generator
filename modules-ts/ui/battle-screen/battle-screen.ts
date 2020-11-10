@@ -1,8 +1,4 @@
-import { Customization, Cells } from '../../../types';
-import { Army } from './types';
-import { PHASE_CASUALTY_MODIFIER } from './constants';
-
-export class Battle {
+class Battle {
   customization: Customization;
   iteration: number;
   attackers: Army;

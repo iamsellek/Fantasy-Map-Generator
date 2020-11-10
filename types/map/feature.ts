@@ -1,4 +1,4 @@
-export interface Feature {
+interface Feature {
   border: boolean;
   cells?: number;
   firstCell?: number;
@@ -10,9 +10,9 @@ export interface Feature {
   vertices?: number[];
 }
 
-export type FeatureType = 'island' | 'ocean' | 'lake';
+type FeatureType = 'island' | 'ocean' | 'lake';
 
-export type GroupType =
+type GroupType =
   | 'continent'
   | 'isle'
   | 'lake_island'

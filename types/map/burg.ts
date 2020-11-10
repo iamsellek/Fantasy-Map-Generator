@@ -1,4 +1,4 @@
-export interface Burg {
+interface Burg {
   cell: number;
   x: number;
   y: number;

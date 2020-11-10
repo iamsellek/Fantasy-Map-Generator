@@ -2,12 +2,10 @@
 // Cohen-Sutherland line clippign algorithm, adapted to efficiently
 // handle polylines rather than just segments
 
-import { TwoNumberArray } from '../types/globals';
-
-export type ArrNumNullArray = (number[] | null)[];
+type ArrNumNullArray = (number[] | null)[];
 
 // Sutherland-Hodgeman polygon clipping algorithm
-export function polygonclip(
+function polygonclip(
   points: TwoNumberArray[],
   bbox: number[],
   secure: number = 0
@@ -64,7 +62,7 @@ export function polygonclip(
 }
 
 // intersect a segment against one of the 4 lines that make up the bbox
-export function intersect(
+function intersect(
   a: number[] | null,
   b: number[] | null,
   edge: number,
@@ -90,7 +88,7 @@ export function intersect(
 //    top  1001  1000  1010
 //    mid  0001  0000  0010
 // bottom  0101  0100  0110
-export function bitCode(p: number[] | null, bbox: number[]): number {
+function bitCode(p: number[] | null, bbox: number[]): number {
   let code = 0;
 
   if (!p) {

@@ -1,6 +1,4 @@
-import { MilitaryIcon } from '../military';
-
-export interface MainOptions {
+interface MainOptions {
   era: string;
   eraShort: string;
   military?: OptionsMilitary;
@@ -9,7 +7,7 @@ export interface MainOptions {
   year?: number;
 }
 
-export interface OptionsMilitary {
+interface OptionsMilitary {
   crew: number;
   icon: MilitaryIcon;
   name: OptionsMilitaryName;
@@ -20,9 +18,9 @@ export interface OptionsMilitary {
   urban: number;
 }
 
-export type OptionsMilitaryName = 'archers' | 'cavalry' | 'artillery' | 'fleet';
+type OptionsMilitaryName = 'archers' | 'cavalry' | 'artillery' | 'fleet';
 
-export type OptionsMilitaryType =
+type OptionsMilitaryType =
   | 'melee'
   | 'ranged'
   | 'mounted'

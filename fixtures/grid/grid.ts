@@ -1,8 +1,4 @@
-import { makeFixture } from 'make-fixture';
-import { Grid } from '../../types/globals';
-import { makeGridCellFixture } from './gridCell';
-
-export const makeGridFixture = (overrides?: Partial<Grid>): Grid => {
+const makeGridFixture = (overrides?: Partial<Grid>): Grid => {
   const defaults: Grid = {
     spacing: 0,
     boundary: [],

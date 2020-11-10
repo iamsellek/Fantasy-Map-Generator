@@ -1,6 +1,4 @@
-import { Phase } from './types';
-
-export const PHASE_CASUALTY_MODIFIER: Record<Phase, number> = {
+const PHASE_CASUALTY_MODIFIER: Record<Phase, number> = {
   skirmish: 0.1,
   melee: 0.2,
   pursue: 0.3,

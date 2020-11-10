@@ -9,7 +9,7 @@
  * x2 = 60-70 latitude: wet summer (rising zone), dry winter (sinking zone)
  * x1 = 70-90 latitude: dry all year (sinking zone)
  */
-export const LATITUDE_MODIFIER = [
+const LATITUDE_MODIFIER = [
   4,
   2,
   2,

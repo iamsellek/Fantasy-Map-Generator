@@ -1,4 +1,4 @@
-export interface Biome {
+interface Biome {
   biomesMatrix: Uint8Array[];
   color: BiomeColor[];
   cost: number[]; // biome movement cost
@@ -9,9 +9,9 @@ export interface Biome {
   name: BiomeName[];
 }
 
-export type BiomeIconArray = [{}, ...BiomeIcon[]];
+type BiomeIconArray = [{}, ...BiomeIcon[]];
 
-export type BiomeColor =
+type BiomeColor =
   | '#466eab'
   | '#fbe79f'
   | '#b5b887'
@@ -26,7 +26,7 @@ export type BiomeColor =
   | '#d5e7eb'
   | '#0b9131';
 
-export type BiomeType =
+type BiomeType =
   | 'dune'
   | 'cactus'
   | 'deadTree'
@@ -37,9 +37,9 @@ export type BiomeType =
   | 'swamp'
   | 'conifer';
 
-export type BiomeIcon = Partial<Record<BiomeType, number>>;
+type BiomeIcon = Partial<Record<BiomeType, number>>;
 
-export type BiomeName =
+type BiomeName =
   | 'Marine'
   | 'Hot desert'
   | 'Cold desert'
